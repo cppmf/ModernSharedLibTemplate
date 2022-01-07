@@ -60,6 +60,8 @@ macro(_DO_TARGET_COMPILE_WARNINGS TARGET)
       /w14905 # wide string literal cast to 'LPSTR'
       /w14906 # string literal cast to 'LPWSTR'
       /w14928 # illegal copy-initialization; more than one user-defined conversion has been implicitly applied
+
+      /wd4505 # unreferenced local function has been removed
   )
 
   if(TREAT_WARNINGS_AS_ERRORS)
@@ -73,6 +75,10 @@ macro(_DO_TARGET_COMPILE_WARNINGS TARGET)
       $<$<CXX_COMPILER_ID:GNU>:${GCC_WARNINGS}>
       $<$<CXX_COMPILER_ID:MSVC>:${MSVC_WARNINGS}>
   )
+
+  # Force MSVC to consider everything as encoded in utf-8
+  target_compile_options(${TARGET} PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/utf-8>)
+
 endmacro()
 
 function(TARGET_COMPILE_WARNINGS TARGET)
