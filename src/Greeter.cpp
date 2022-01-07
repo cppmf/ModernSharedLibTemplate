@@ -5,10 +5,10 @@
 
 using namespace greeter;
 
-Greeter::Greeter(const char *name)
+Greeter::Greeter(const std::string& name)
         : _name(name) {}
 
-const char *Greeter::greet(LanguageCode lang) const {
+std::string Greeter::greet(LanguageCode lang) const {
 
     std::string greet;
 
@@ -28,8 +28,5 @@ const char *Greeter::greet(LanguageCode lang) const {
             break;
     }
 
-    auto *dst = new char[strlen(greet.c_str()) + 1];
-    std::strcpy(dst, greet.c_str());
-
-    return dst;
+    return greet;
 }

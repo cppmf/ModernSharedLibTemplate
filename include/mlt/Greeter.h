@@ -16,13 +16,13 @@ namespace greeter {
 /**
  * @brief A class for saying hello in multiple languages
  */
-    class MLT_EXPORT Greeter {
+    class Greeter {
     public:
         /**
          * @brief Creates a new greeter
          * @param name the name to greet
          */
-        explicit Greeter(const char *name);
+        MLT_EXPORT explicit Greeter(const std::string& name);
 
     public:
         /**
@@ -30,10 +30,10 @@ namespace greeter {
          * @param lang the language to greet in
          * @return a string containing the greeting
          */
-        [[nodiscard]] const char *greet(LanguageCode lang = LanguageCode::EN) const;
+        MLT_EXPORT std::string greet(LanguageCode lang = LanguageCode::EN) const;
 
     private:
-        const char *_name;
+        const std::string _name;
     };
 
 } // namespace greeter
